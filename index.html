@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+        <title>Image Filter Wep-page</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/SimpleImage.js"></script>
+
+</head>
+
+<body>
+
+	<h1> <span id="H1span1">Image Filter</span> <span id="H1span2">Algorithms</span> </h1>
+
+	<div id="table_container">
+
+		<table>
+		
+		    <tr>
+		        
+		        <th> <h3>Canvas</h3> </th>
+		        
+		        <th colspan="2"> <h3>Filters</h3> </th>
+		    
+		    </tr>
+
+		    <tr>
+
+		        <td rowspan="3"> <canvas id="canvasObject"></canvas> </td>
+		        
+				<td> <input id="colorObject" type="color" value="#ffffff" onchange="makeHue()"> </td>
+				
+		    </tr>
+		    
+		    <tr>
+
+		       <td> <input class="button_modifiers" type="button" value="Rainbow" onclick="makeRainbow()"> </td>
+		    	
+		        
+		    </tr>
+		    
+		    <tr>
+		    
+		    	<td id="externalName"> Blur: <input id="rangeObject" type="range" value="2" min="1" max="5" onchange="makeBlur()"> </td>
+		    
+		    </tr>
+
+		    <tr>
+
+		        <td> <input id="fileObject" type="file" multiple="false" accept="image/*" onchange="upload()"> </td>
+				
+				<td> <input id="resetButton" type="button" value="Reset" onclick="reset()">  </td>
+
+		    </tr>
+
+		</table>
+    
+    </div>
+    
+    <div id="footer">
+	
+		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS5Gd5UUlRvt0_dXJWgxFvJgPK_5uXU3yLCiGbW0MfJd3Mr2BKY8A"/>	
+	
+		<a href="https://www.coursera.org/" target="_blank">The best place to learn programming</a>
+		
+		<a id="greenScreen_link" href="https://philomathus.github.io/Green-Screen/" target="_blank"> <span id="Footerspan"> visit:</span> <span id="Footerspan1">Green Screen</span> <span id="Footerspan2">Algorithm</span> </a>
+	</div>
+
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>

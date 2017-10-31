@@ -1,0 +1,172 @@
+//var answer = prompt("Input Image:");
+var imageMod = new SimpleImage("astrachan.jpg");
+
+//width and height must be equal
+imageMod.setSize(300, 300);
+
+function makeRGB_soul(primeColor, pixel) {
+        
+	var avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue())/3;
+
+	switch(primeColor) {
+
+	case "red":	
+
+		if (avg < 128) {
+	
+			pixel.setRed(avg * 2);
+			pixel.setGreen(0);
+			pixel.setBlue(0);
+	
+		} else {
+	
+			pixel.setRed(255);
+			pixel.setGreen(avg * 2 - 255);
+			pixel.setBlue(avg * 2 - 255);
+	
+		}
+	
+		break;
+	case "green":
+	
+		if (avg < 128) {
+	
+			pixel.setRed(0);
+			pixel.setGreen(avg * 2);
+			pixel.setBlue(0);
+	
+		} else {
+	
+			pixel.setRed(avg * 2 - 255);
+			pixel.setGreen(255);
+			pixel.setBlue(avg * 2 - 255);
+	
+		}
+	
+		break;
+	case "blue":
+	
+		if (avg < 128) {
+	
+			pixel.setRed(0);
+			pixel.setGreen(0);
+			pixel.setBlue(avg * 2);
+	
+		} else {
+	
+			pixel.setRed(avg * 2 - 255);
+			pixel.setGreen(avg * 2 - 255);
+			pixel.setBlue(255);
+	
+		}
+	
+		break;
+
+	}
+
+}
+
+function makeGray_soul(pixel) {
+
+    var avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+
+    pixel.setRed(avg);
+    pixel.setGreen(avg);
+    pixel.setBlue(avg);
+
+}
+
+function diagonalGrid_lvl1() {
+
+    for (var pixel of imageMod.values()) {
+        
+        var width = imageMod.getWidth(),
+    		height = imageMod.getHeight();
+    				
+    	var x = pixel.getX(),
+    		y = pixel.getY();
+    		
+    	var avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+    
+        //Very important:    
+            
+    	if (x - y <= -150) {
+    
+    		makeGray_soul(pixel);
+    
+    	} else if (x - y >= 150) {
+    
+    		makeRGB_soul("blue", pixel);
+    		
+    	} else if (x - y <= 0) {
+    		
+    		makeRGB_soul("red", pixel);
+    		
+    	} else if (x - y >= 0) {
+    		
+    		makeRGB_soul("green", pixel);
+    		
+    	}
+    		
+    }
+
+}
+
+function diagonalGrid_lvl2() {
+    
+    
+    
+    for (var pixel of imageMod.values()) {
+        
+        var width = imageMod.getWidth(),
+    		height = imageMod.getHeight();
+    				
+    	var x = pixel.getX(),
+    		y = pixel.getY();
+    		
+    	var avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+        
+        if (x + y >= 450) {
+            
+            makeRGB_soul("blue", pixel);
+            
+        } else if (x + y >= 300) {
+            
+            makeRGB_soul("green", pixel);
+            
+        } else if (x + y >= 150) {
+            
+            makeRGB_soul("red", pixel);
+            
+        } else if (x + y <= 150) {
+            
+            makeGray_soul(pixel);
+            
+        }
+    
+    }
+
+    
+}
+
+function choose(choice) {
+    
+    if (choice === "lvl 1") {
+        
+        diagonalGrid_lvl1();
+        
+    } else if (choice === "lvl 2") {
+        
+        diagonalGrid_lvl2();
+        
+    }
+    
+    print(imageMod);
+    
+} 
+
+var choice = prompt("Input diagonal grid level:");
+
+choose(choice);
+
+
